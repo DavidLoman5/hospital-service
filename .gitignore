@@ -1,0 +1,10 @@
+config.json
+data/
+*.db
+*.db-wal
+*.db-shm
+*.bak
+__pycache__/
+tools/venv/
+tools/pylibs/
+tools/*.otf

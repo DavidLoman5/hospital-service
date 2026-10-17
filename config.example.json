@@ -1,0 +1,13 @@
+{
+  "_comment": "Copy to config.json and fill in the two LINE secrets. config.json is gitignored.",
+  "_channelSecret": "LINE Developers Console -> your channel -> Basic settings",
+  "channelSecret": "",
+  "_channelAccessToken": "LINE Developers Console -> Messaging API -> issue a long-lived token",
+  "channelAccessToken": "",
+  "_ownerUserId": "Your own LINE userId. Printed to the log the first time you message the bot.",
+  "ownerUserId": "",
+  "_allowedUserIds": "Family members' LINE userIds. Everyone else gets a refusal and cannot reach the hospital through this bot.",
+  "allowedUserIds": [],
+  "_dryRunLine": "true prints outbound LINE calls instead of sending them - use while testing",
+  "dryRunLine": false
+}
