@@ -43,7 +43,7 @@ ID_RE = re.compile(r"^#(\d+)$")
 def _help(registry):
     names = "、".join(a.short for a in registry.all())
     lines = [
-        "🏥 看診進度小幫手",
+        "🏥 醫院看診小幫手",
         "可查：%s" % names,
         "",
         "【查進度】",

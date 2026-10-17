@@ -1,10 +1,24 @@
-# 看診進度 LINE Bot
+# 醫院看診小幫手（LINE Bot）
 
 傳一則 LINE 訊息就能查看診進度，並在快輪到你的時候主動通知你 — 不必守在候診區一直重新整理網頁。也能記下回診日期和慢性處方箋的領藥時間，到時候提醒。
 
 目前支援：中國醫藥大學新竹附設醫院。其他醫院依 [docs/hospitals.md](docs/hospitals.md) 逐家加入。介面以長輩為主要讀者設計：大字、口語、按鈕少而大。
 
-**設定步驟請看 [SETUP.md](SETUP.md)。**
+## 加好友
+
+<img src="docs/line-qr.png" width="180" alt="醫院看診小幫手 LINE QR code">
+
+- **手機掃描**上面的 QR code
+- 或在 LINE 搜尋 ID：**@412qwqig**（記得加 @）
+- 或用手機點這個連結：https://line.me/R/ti/p/@412qwqig
+
+這是家人親友私人使用的服務，加好友之後要**先開通才能用**：
+
+1. 加好友後，隨便傳一句話給它。這時會收到「這是私人使用的服務」，是正常的。
+2. 跟管理者說一聲。管理者在主機上執行 `python3 -m bot.admin pending` 找到你，再執行 `python3 -m bot.admin allow <你的 ID>` 開通。
+3. 開通後傳「說明」，就會看到用法；畫面下方的選單也能直接按。
+
+**架設自己的一份，請看 [SETUP.md](SETUP.md)。**
 
 ## 設計重點
 

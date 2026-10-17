@@ -10,7 +10,7 @@
 2. **Create a new provider**（隨便取名，例如 `felix-home`）
 3. 在該 provider 下建立 **Messaging API channel**
    - 現在的流程會先導到 **LINE Official Account Manager** 建官方帳號
-   - 名稱例如「新竹附醫看診進度」，類別選醫療／健康
+   - 名稱例如「醫院看診小幫手」，類別選醫療／健康
    - **地區一定要選台灣** — 這決定了免費方案是每月 200 則推播，且建立後不能改
 4. **Basic settings** 分頁 → 複製 **Channel secret**
 5. **Messaging API** 分頁 → **Channel access token (long-lived)** → Issue → 複製

@@ -5,7 +5,7 @@ and a profile picture that looks official would invite exactly the trust it has 
 earned. The visual language borrowed instead is the queue display itself.
 
     PYTHONPATH=tools/pylibs python3 tools/make_avatar.py           # contact sheet
-    PYTHONPATH=tools/pylibs python3 tools/make_avatar.py 2         # render variant 2 alone
+    PYTHONPATH=tools/pylibs python3 tools/make_avatar.py 4         # render variant 4 alone
 """
 
 import os
@@ -60,7 +60,33 @@ def variant_3(img, draw):
                   cx + clap // 2, rim_y + rim_h + gap + clap], fill="#2E6BE6")
 
 
-VARIANTS = [variant_1, variant_2, variant_3]
+def variant_4(img, draw):
+    """A generic hospital building over a ticket number - "which hospital, which number".
+
+    The building is drawn from primitives (roof, windows, a cross on a white disc) and is
+    nobody's actual hospital, for the same reason as the note at the top of this file.
+    """
+    # Green, not red: a red cross on white is the protected Red Cross emblem (紅十字會法).
+    blue, red = "#1D4ED8", "#16A34A"
+    draw.rectangle([0, 0, S, S], fill=blue)
+    cx = S // 2
+    # Building: a wide low wing and a taller centre block with the cross.
+    draw.rounded_rectangle([cx - 170, 205, cx + 170, 345], radius=10, fill="#FFFFFF")
+    draw.rounded_rectangle([cx - 82, 112, cx + 82, 345], radius=10, fill="#FFFFFF")
+    draw.ellipse([cx - 50, 128, cx + 50, 228], fill="#FFFFFF", outline=red, width=8)
+    draw.rectangle([cx - 13, 145, cx + 13, 211], fill=red)
+    draw.rectangle([cx - 33, 165, cx + 33, 191], fill=red)
+    for x in (cx - 150, cx - 118, cx + 96, cx + 128):
+        for y in (232, 280):
+            draw.rounded_rectangle([x, y, x + 22, y + 28], radius=4, fill="#BFD3FF")
+    draw.rounded_rectangle([cx - 26, 290, cx + 26, 345], radius=6, fill=blue)
+    # Ticket: the number you are waiting for.
+    draw.rounded_rectangle([cx - 190, 372, cx + 190, 512], radius=24, fill="#FFFFFF")
+    centred(draw, "看診號", ImageFont.truetype(FONT, 52), cx - 80, 442, "#4B5563")
+    centred(draw, "67", ImageFont.truetype(FONT, 118), cx + 98, 438, blue)
+
+
+VARIANTS = [variant_1, variant_2, variant_3, variant_4]
 
 
 def render(i):
@@ -78,12 +104,13 @@ def main(argv):
 
     # Contact sheet, with each option shown circle-cropped the way LINE will display it.
     pad, label_h = 40, 70
-    sheet = Image.new("RGB", (S * 3 + pad * 4, S + pad * 2 + label_h), "#FFFFFF")
+    n = len(VARIANTS)
+    sheet = Image.new("RGB", (S * n + pad * (n + 1), S + pad * 2 + label_h), "#FFFFFF")
     d = ImageDraw.Draw(sheet)
     f = ImageFont.truetype(FONT, 44)
     mask = Image.new("L", (S, S), 0)
     ImageDraw.Draw(mask).ellipse([0, 0, S, S], fill=255)
-    for i in range(3):
+    for i in range(n):
         x = pad + i * (S + pad)
         sheet.paste(render(i), (x, pad), mask)
         centred(d, "選項 %d" % (i + 1), f, x + S // 2, pad + S + label_h // 2, "#1F2328")
